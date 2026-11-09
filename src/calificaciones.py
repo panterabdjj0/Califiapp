@@ -1,17 +1,9 @@
 LIMITE_ALUMNOS = 30
 MINIMA_APROBATORIA = 6
 
-# calificaciones.py - Lógica de CalifiApp (una función por criterio)
-# Cada función responde a un criterio de aceptación de las HU-01 a HU-04.
-
-
 # HU-01 Registrar alumnos
 def nombre_repetido(alumnos, nombre):
-    nombre = nombre.strip().lower()
-    for registrado in alumnos:
-        if registrado.lower() == nombre:
-            return True
-    return False
+    return buscar_alumno(alumnos, nombre) is not None
 
 
 def registrar_alumno(alumnos, nombre):
@@ -55,3 +47,21 @@ def promedio_grupal(promedios):
     if len(promedios) == 0:
         return 0.0
     return round(sum(promedios) / len(promedios), 1)
+
+
+# HU-05 Ver la lista del grupo
+def lista_ordenada(alumnos):
+    return sorted(alumnos, key=str.lower)
+
+
+def linea_lista(numero, nombre):
+    return str(numero) + ". " + nombre
+
+
+# HU-06 Buscar un alumno
+def buscar_alumno(alumnos, nombre):
+    nombre = nombre.strip().lower()
+    for registrado in alumnos:
+        if registrado.lower() == nombre:
+            return registrado
+    return None
