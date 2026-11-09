@@ -1,93 +1,99 @@
 # CalifiApp
 
-Registrar y consultar las calificaciones de un grupo desde la consola.
+Aplicación de consola para registrar alumnos y consultar sus calificaciones.
 
-Proyecto Scrum del **Submódulo 2: Aplica metodologías ágiles para el desarrollo de software**
-CBTIS No. 200 · Programación · 3AM PGR · Docente: Mtro. Omar Torres Sánchez
+Proyecto Scrum del **Submódulo 2: Aplica metodologías ágiles para el desarrollo de software**. CBTIS No. 200 · Programación · 3AM PGR · Docente: Mtro. Omar Torres Sánchez.
+
+## Objetivo del Sprint 1
+
+Que el usuario pueda ver la lista completa de su grupo en orden alfabético y consultar los parciales, promedio y estatus de un alumno.
 
 ## Equipo Scrum
 
 | Rol | Integrante |
-|-----|------------|
-| Product Owner | (Emmanuel Cruz Luna) |
-| Scrum Master | (Angel Juarez Torres) |
-| Equipo de desarrollo | (Jesus Nahil ) |
+|---|---|
+| Product Owner | Emmanuel Cruz Luna |
+| Scrum Master | Angel Juarez Torres |
+| Equipo de desarrollo | Jesus Nahil |
 
-Tablero del proyecto: (pega aquí la liga de tu tablero de GitHub Projects)
+Tablero del proyecto: pendiente de agregar el enlace de GitHub Projects del equipo.
 
-## Historias de usuario terminadas
+## Historias de usuario
 
 | HU | Historia | Estado |
-|----|----------|--------|
+|---|---|---|
 | HU-01 | Registrar alumnos (máximo 30, sin nombres repetidos) | Terminada |
 | HU-02 | Capturar calificaciones de 0 a 10 | Terminada |
 | HU-03 | Calcular promedio y estatus (aprueba con 6) | Terminada |
 | HU-04 | Mostrar reporte del grupo | Terminada |
+| HU-05 | Ver la lista del grupo en orden alfabético con su total | Terminada (Sprint 1) |
+| HU-06 | Consultar a un alumno: sus parciales y su promedio | Terminada (Sprint 1) |
+
+## Sprint 1 (9 y 10 de noviembre de 2026)
+
+**Incremento:** opciones 5 (HU-05) y 6 (HU-06) del menú, con 5 pruebas nuevas (18 en total).
+
+**Lo que aprendimos en la Sprint Review:** los datos de alumnos y calificaciones viven en la memoria mientras el programa está abierto; al cerrar CalifiApp se pierden. Para el Sprint 2 se propone guardar la información en un archivo JSON o CSV (HU-07 por definir).
+
+### Sprint Backlog: 8 tareas
+
+| Tarea | Trabajo | Historia |
+|---|---|---|
+| T1 | Crear pruebas de lista ordenada | HU-05 |
+| T2 | Programar lista_ordenada() y linea_lista() | HU-05 |
+| T3 | Agregar opción 5 al menú | HU-05 |
+| T4 | Crear pruebas de búsqueda | HU-06 |
+| T5 | Programar buscar_alumno() y refactorizar nombre_repetido() | HU-06 |
+| T6 | Agregar opción 6 al menú | HU-06 |
+| T7 | Actualizar README y comprobar las 18 pruebas | Sprint 1 |
+| T8 | Demostrar el incremento y registrar el descubrimiento | Sprint Review |
 
 ## Cómo ejecutar
 
-Abre PowerShell **dentro de la carpeta califiapp** y escribe:
+Abre PowerShell dentro de la carpeta del proyecto y escribe:
 
-```
+```powershell
 python src/main.py
 ```
 
-Si `python` no se reconoce, usa `py src/main.py`.
+Si `python` no se reconoce, prueba `py src/main.py`.
 
 ## Cómo correr las pruebas
 
-```
+```powershell
 python -m unittest discover -s tests -v
 ```
 
-Debe decir **Ran 13 tests** y **OK**.
+Resultado comprobado: **Ran 18 tests** y **OK**.
 
 ## Estructura del proyecto
 
-```
-califiapp/
-├── README.md          <- la "portada" del proyecto
-├── .gitignore         <- lo que Git NO debe guardar
+```text
+Califiapp/
+├── README.md
+├── .gitignore
 ├── data/
 ├── src/
-│   ├── main.py            (menú de consola)
-│   └── calificaciones.py  (lógica de las HU)
+│   ├── main.py
+│   └── calificaciones.py
 └── tests/
-    └── test_calificaciones.py  (13 pruebas)
+    └── test_calificaciones.py
 ```
 
 ## Definición de Terminado (DoD)
 
-Una historia pasa a **Terminado** solo cuando cumple estos cuatro puntos:
+- [x] Las funciones HU-05 y HU-06 cumplen los criterios programados.
+- [x] Las pruebas automatizadas pasan: 18 tests y OK.
+- [ ] Un compañero revisó el cambio antes del commit (requiere revisión real del equipo).
+- [x] El README quedó actualizado.
 
-- [ ] Cumple los criterios de aceptación de la historia.
-- [ ] Las pruebas pasan con `python -m unittest discover -s tests` y muestran **OK**.
-- [ ] El copiloto revisó los cambios en el Pull Request.
-- [ ] El README quedó actualizado.
+## Commits del Sprint 1
 
-## Reglas del equipo para usar Git
+- HU-05 y HU-06: agrega lista alfabética y búsqueda de alumnos.
+- HU-05 y HU-06: agrega cinco pruebas automatizadas.
+- HU-05 y HU-06: agrega opciones 5 y 6 al menú.
+- README: documenta Sprint 1, HU-05, HU-06 y las 18 pruebas.
 
-- Antes de cada commit corre las pruebas: deben decir **OK**.
-- Un commit = un cambio con sentido. El mensaje dice **qué hiciste**:
-  - Bien: `HU-02: valida calificaciones de 0 a 10`
-  - Mal: `cambios`, `ya quedó`, `asdf`
-- Revisa con `git status` en qué estado estás (es tu GPS).
-- Si algo se rompe y no has hecho commit: `git restore .`
-- Nunca borres ni modifiques la carpeta oculta `.git`.
-- Haz `git push` **antes de apagar** o reiniciar la computadora.
-- Antes de empezar a trabajar en equipo, trae lo nuevo con `git pull`.
-- Cada historia se trabaja en su propia rama y entra a `main` mediante un Pull Request.
-- Cierra tu sesión de GitHub al terminar: la PC del laboratorio es compartida.
+## Nota sobre los datos
 
-Respaldo en la nube: este repositorio en GitHub (público, para que el docente lo revise).
-
-## El ritual de cada clase
-
-1. Instala Git: `git --version`
-2. Dile quién eres: `git config --global user.name "Tu Nombre"` y `git config --global user.email "tu@correo.com"`
-3. Baja tu proyecto: `git clone URL` y `cd califiapp`
-4. Trabaja y prueba: `python src/main.py`
-5. Toma la foto: `git add .` y `git commit -m "mensaje"`
-6. Súbelo **antes de apagar**: `git push`
-
-> La computadora olvida todo. GitHub no.
+En esta versión, `alumnos` y `calificaciones` se guardan en memoria. Se borran al cerrar el programa. El guardado permanente queda como trabajo del Sprint 2.
