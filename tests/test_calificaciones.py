@@ -74,5 +74,31 @@ class HU04ReporteDelGrupo(unittest.TestCase):
         self.assertEqual(promedio_grupal([]), 0.0)
 
 
+class HU05ListaDelGrupo(unittest.TestCase):
+
+    def test_lista_ordenada_alfabeticamente_sin_distinguir_mayusculas(self):
+        alumnos = ["Luis Pérez", "ana lópez", "Carla Ruiz"]
+        self.assertEqual(lista_ordenada(alumnos), ["ana lópez", "Carla Ruiz", "Luis Pérez"])
+
+    def test_lista_ordenada_no_modifica_lista_original(self):
+        alumnos = ["Luis Pérez", "ana lópez"]
+        lista_ordenada(alumnos)
+        self.assertEqual(alumnos, ["Luis Pérez", "ana lópez"])
+
+    def test_linea_lista(self):
+        self.assertEqual(linea_lista(1, "Ana López"), "1. Ana López")
+
+
+class HU06BuscarAlumno(unittest.TestCase):
+
+    def test_buscar_alumno_con_espacios_y_mayusculas(self):
+        alumnos = ["Luis Pérez", "Ana López"]
+        self.assertEqual(buscar_alumno(alumnos, "  LUIS pérez  "), "Luis Pérez")
+
+    def test_buscar_alumno_que_no_existe(self):
+        alumnos = ["Luis Pérez", "Ana López"]
+        self.assertIsNone(buscar_alumno(alumnos, "Carla Ruiz"))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
