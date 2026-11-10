@@ -1,0 +1,67 @@
+LIMITE_ALUMNOS = 30
+MINIMA_APROBATORIA = 6
+
+# HU-01 Registrar alumnos
+def nombre_repetido(alumnos, nombre):
+    return buscar_alumno(alumnos, nombre) is not None
+
+
+def registrar_alumno(alumnos, nombre):
+    nombre = nombre.strip()
+    if nombre == "" or len(alumnos) >= LIMITE_ALUMNOS:
+        return False
+    if nombre_repetido(alumnos, nombre):
+        return False
+    alumnos.append(nombre)
+    return True
+
+
+# HU-02 Capturar calificaciones
+def validar_calificacion(texto):
+    try:
+        calificacion = float(texto)
+    except ValueError:
+        return None
+    if calificacion < 0 or calificacion > 10:
+        return None
+    return calificacion
+
+
+# HU-03 Calcular promedio y estatus
+def calcular_promedio(calificaciones):
+    return round(sum(calificaciones) / len(calificaciones), 1)
+
+
+def obtener_estatus(promedio):
+    if promedio >= MINIMA_APROBATORIA:
+        return "APROBADO"
+    return "REPROBADO"
+
+
+# HU-04 Mostrar reporte del grupo
+def fila_reporte(nombre, promedio):
+    return nombre + " | " + str(promedio) + " | " + obtener_estatus(promedio)
+
+
+def promedio_grupal(promedios):
+    if len(promedios) == 0:
+        return 0.0
+    return round(sum(promedios) / len(promedios), 1)
+
+
+# HU-05 Ver la lista del grupo
+def lista_ordenada(alumnos):
+    return sorted(alumnos, key=str.lower)
+
+
+def linea_lista(numero, nombre):
+    return str(numero) + ". " + nombre
+
+
+# HU-06 Buscar un alumno
+def buscar_alumno(alumnos, nombre):
+    nombre = nombre.strip().lower()
+    for registrado in alumnos:
+        if registrado.lower() == nombre:
+            return registrado
+    return None
